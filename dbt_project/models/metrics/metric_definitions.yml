@@ -1,0 +1,33 @@
+version: 2
+metrics:
+  - name: approval_rate
+    label: Loan Approval Rate
+    description: "Percentage of applications that resulted in loan origination"
+    type: ratio
+    owner: data_team
+    last_modified: "2026-04-16"
+    tags: [core, fairness, primary]
+
+  - name: disparate_impact_ratio
+    label: Disparate Impact Ratio
+    description: "Approval rate of minority group / approval rate of majority group. Must be > 0.8 (4/5ths rule)"
+    type: ratio
+    owner: data_team
+    last_modified: "2026-04-16"
+    tags: [fairness, compliance, regulatory]
+
+  - name: denial_rate_by_race
+    label: Denial Rate by Race
+    description: "Loan denial rate segmented by applicant race"
+    type: percentage
+    owner: data_team
+    last_modified: "2026-04-16"
+    tags: [fairness, audit]
+
+  - name: income_to_loan_ratio
+    label: Income to Loan Amount Ratio
+    description: "Average income divided by average loan amount per group"
+    type: ratio
+    owner: data_team
+    last_modified: "2026-04-16"
+    tags: [risk, diagnostic]

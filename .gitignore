@@ -1,0 +1,74 @@
+# Python
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+.Python
+
+# Environment
+.env
+venv/
+env/
+.venv/
+ENV/
+
+# Database — generated, never commit
+data/2024_public_lar_csv.csv
+data/fairlend.db
+data/*.db
+data/*.sqlite
+*.db
+*.sqlite
+*.sqlite3
+
+# Trained model artifacts — generated, never commit
+models/saved/*.joblib
+models/saved/*.pkl
+models/saved/*.npy
+models/saved/*.csv
+models/saved/*.txt
+!models/saved/.gitkeep
+
+# dbt compiled output
+dbt_project/target/
+dbt_project/logs/
+dbt_project/.user.yml
+dbt_project/dbt_packages/
+
+# IDE
+.vscode/settings.json
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+.DS_Store?
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# Logs and temp
+*.log
+*.tmp
+*.temp
+
+# Streamlit secrets
+.streamlit/secrets.toml
+
+# Pytest
+.pytest_cache/
+.cache/
+
+# Distribution
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
