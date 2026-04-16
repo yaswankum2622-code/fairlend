@@ -9,10 +9,9 @@ import sqlite3
 import pandas as pd
 import numpy as np
 import os
-from pathlib import Path
 
 np.random.seed(42)
-N = 10_000
+N = 120_000
 
 print("Generating synthetic HMDA-like dataset for CI...")
 
@@ -36,7 +35,20 @@ sex_col = np.random.choice(sexes, N, p=sex_weights)
 age_col = np.random.choice(ages, N)
 state_col = np.random.choice(states, N)
 
-income = np.random.lognormal(4.2, 0.6, N).clip(20, 500)
+# Bake in realistic race-linked income dispersion so proxy-risk screening
+# remains meaningful in CI without using the full HMDA dataset.
+income_params = {
+    "White": (4.30, 0.54),
+    "Black or African American": (4.02, 0.58),
+    "Asian": (4.42, 0.50),
+    "Other or Not Provided": (4.15, 0.56),
+}
+income = np.array(
+    [
+        np.random.lognormal(*income_params[race])
+        for race in race_col
+    ]
+).clip(20, 500)
 loan_amount = (income * np.random.uniform(2.5, 5.5, N)).clip(50, 2000)
 dti = np.random.beta(2, 5, N).clip(0.05, 0.65)
 lti = (loan_amount / income).clip(0.5, 15)
