@@ -1,3 +1,1 @@
-"""
-FairLend | compliance | Compliance package for regulatory alignment workflows.
-"""
+__all__ = ["eu_ai_act", "nl_query"]

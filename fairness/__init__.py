@@ -1,3 +1,1 @@
-"""
-FairLend | fairness | Fairness analysis package for bias measurement workflows.
-"""
+__all__ = ["disparate_impact", "proxy_detection"]
