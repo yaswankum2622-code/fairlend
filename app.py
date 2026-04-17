@@ -71,7 +71,7 @@ def main() -> int:
         "streamlit",
         "run",
         "dashboard/app.py",
-        "--server.port=7860",
+        "--server.port=8501",
         "--server.address=0.0.0.0",
         "--server.headless=true",
         "--browser.gatherUsageStats=false",
