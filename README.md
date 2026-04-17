@@ -44,6 +44,7 @@ FairLend is built around the real problem:
 | Sample size | 500,000 real US applications |
 | Best raw model | LightGBM, AUC-ROC `0.8402` |
 | Legally safest model | LightGBM + Fairlearn, DPR `0.9025` |
+| Live demo runtime | Synthetic fallback when raw HMDA CSV is unavailable |
 | Explainability | SHAP per-applicant waterfall |
 | Compliance tooling | ECOA letters, NL to SQL chat, EU AI Act checklist |
 | Deployment | Streamlit on Hugging Face Spaces |
@@ -51,7 +52,22 @@ FairLend is built around the real problem:
 
 ---
 
+## Benchmark vs Live Demo
+
+The repository documents two different operating modes, and they should not be mixed together:
+
+| Environment | Data source | What it is for | What can differ |
+|---|---|---|---|
+| Full benchmark | 500,000-row HMDA 2024 sample | Model evaluation, documentation, repo claims | Best accuracy and fairness numbers |
+| Public Hugging Face demo | Synthetic fallback when the raw CSV is not present | Interactive product demo and UI walkthrough | Dashboard metrics, fairness ratios, and EU AI Act status cards |
+
+That means the **tables below are the full benchmark results**, while the screenshots may reflect the current live demo runtime.
+
+---
+
 ## The Core Result
+
+These are the full-HMDA benchmark results from the local/research pipeline, not the synthetic demo fallback.
 
 Three out of four trained models fail the fairness threshold even without race or sex being used as direct inputs.
 
@@ -80,6 +96,8 @@ Three out of four trained models fail the fairness threshold even without race o
 |---|
 | <img src="https://raw.githubusercontent.com/yaswankum2622-code/fairlend/main/VISUAL%27S/Screenshot%202026-04-16%20221112.png" alt="EU AI Act report view" width="100%"> |
 
+The current EU AI Act screenshot reflects the **live demo state**. In demo mode, the report can show **REVIEW REQUIRED (9/10)** even though the full benchmark environment documented in this repo reaches **COMPLIANT (10/10)**.
+
 ---
 
 ## What the App Does
@@ -91,7 +109,7 @@ Three out of four trained models fail the fairness threshold even without race o
 | Fairness Audit | Computes disparate impact and proxy correlations | Finds discrimination even when protected fields are excluded |
 | Adverse Action | Drafts ECOA-style denial letters with Gemini | Turns model output into regulator-friendly communication |
 | Compliance Chat | Converts plain English questions into SQL over HMDA data | Gives compliance teams direct access to evidence |
-| EU AI Act Report | Produces an article-by-article checklist | Connects ML outputs to high-risk AI governance |
+| EU AI Act Report | Produces an article-by-article checklist | Connects ML outputs to high-risk AI governance and can surface review gaps in demo mode |
 
 ---
 
