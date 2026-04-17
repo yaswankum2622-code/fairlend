@@ -2,15 +2,13 @@
 FairLend | app.py | Hugging Face Spaces entry point.
 
 Bootstraps a database and trained artifacts if they are missing, then
-launches the Streamlit dashboard.
+hands off to the Streamlit dashboard script.
 """
 
 import os
+import runpy
 import subprocess
 import sys
-
-import streamlit.web.cli as stcli
-
 
 DB_PATH = "data/fairlend.db"
 RAW_DATA_PATH = "data/2024_public_lar_csv.csv"
@@ -63,21 +61,11 @@ def ensure_models() -> None:
     print("Models trained and saved.")
 
 
-def main() -> int:
+def main() -> None:
     ensure_database()
     ensure_models()
-
-    sys.argv = [
-        "streamlit",
-        "run",
-        "dashboard/app.py",
-        "--server.port=8501",
-        "--server.address=0.0.0.0",
-        "--server.headless=true",
-        "--browser.gatherUsageStats=false",
-    ]
-    return stcli.main()
+    runpy.run_path("dashboard/app.py", run_name="__main__")
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    main()
